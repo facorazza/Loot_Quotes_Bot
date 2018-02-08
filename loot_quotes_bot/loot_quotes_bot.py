@@ -3,14 +3,14 @@ import os, requests, json, ftplib
 import pandas as pd
 
 
+# ## Load private settings
+from private_settings import *
+
 # ## Define working directory
-PATH = ""
 os.chdir(PATH)
 
 
 # ## Define constants
-#/token sul @lootplusbot
-API_TOKEN = ""
 NO_TRANSACTIONS = 1000
 
 
@@ -49,7 +49,8 @@ transactions.drop(columns=["buyer", "from_nick", "id", "name", "to_nick", "type"
 #TODO: Develop cleaning process
 # Remove items sold at the base price except for C type items & remove items with price over 5 times the estimate except for U type
 transactions = transactions.merge(items[["estimate", "rarity", "value"]], left_on="item_id", right_index=True, how="left")
-transactions = transactions.query("(rarity != 'C' | price != value) & (rarity != 'U' | price < estimate*5)")
+transactions = transactions.query("rarity != 'C' | price != value")
+transactions = transactions.query("rarity != 'U' | price < estimate*5")
 
 # Drop estimate and values columns
 transactions.drop(columns=["estimate", "rarity", "value"], inplace=True)
