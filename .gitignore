@@ -4,6 +4,9 @@
 # Escludi file .csv
 *.csv
 
+# Escludi file .json
+*.json
+
 # Escludi jupyter notebooks checkpoints
 .ipynb_checkpoints
 
