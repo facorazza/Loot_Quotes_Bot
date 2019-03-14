@@ -7,8 +7,8 @@
 # Escludi file .json
 *.json
 
-# Escludi jupyter notebooks checkpoints
-.ipynb_checkpoints
+# Escludi jupyter notebook
+*.ipynb_checkpoints
 
 # Escludi cache di Python
 __pycache__
