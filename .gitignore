@@ -1,17 +1,14 @@
 # Escludi file di sistema macOS
 .DS_Store
 
-# Escludi file .csv
+*.key
+*.db
 *.csv
-
-# Escludi file .json
 *.json
 
 # Escludi jupyter notebook
+*.ipynb
 *.ipynb_checkpoints
 
 # Escludi cache di Python
 __pycache__
-
-# Escludi modifiche alle impostazioni personali
-loot_quotes_bot/private_settings.py
