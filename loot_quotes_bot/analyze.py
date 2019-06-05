@@ -16,7 +16,7 @@ import pandas as pd
 # In[ ]:
 
 
-conn = sqlite3.connect("./loot.db")
+conn = sqlite3.connect("bots/Loot_Quotes_Bot/loot.db")
 c = conn.cursor()
 
 
@@ -27,6 +27,12 @@ c.execute('''CREATE TABLE IF NOT EXISTS transactions (id INTEGER, item_id INTEGE
 
 
 # ## Cleaning transactions
+
+# In[ ]:
+
+
+items = pd.read_csv("bots/Loot_Quotes_Bot/data/items.csv")
+
 
 # In[ ]:
 
@@ -138,7 +144,7 @@ items.head()
 # In[ ]:
 
 
-items.to_json("./data/market_prices.json", orient="records")
+items.to_json("bots/Loot_Quotes_Bot/data/market_prices.json", orient="records")
 
 
 # ## Save items statistics to file
@@ -147,13 +153,13 @@ items.to_json("./data/market_prices.json", orient="records")
 
 
 def save_row_to_csv(row):
-    if os.path.isfile(f"./items/{row.name}.csv"):
-        data = pd.read_csv(f"./items/{row.name}.csv")
+    if os.path.isfile(f"bots/Loot_Quotes_Bot/items/{row.name}.csv"):
+        data = pd.read_csv(f"bots/Loot_Quotes_Bot/items/{row.name}.csv")
     else:
         data = pd.DataFrame()
     
     data = data.append(row)
-    data.to_csv(f"./items/{row.name}.csv", index=False)
+    data.to_csv(f"bots/Loot_Quotes_Bot/items/{row.name}.csv", index=False)
 
 
 # In[ ]:
