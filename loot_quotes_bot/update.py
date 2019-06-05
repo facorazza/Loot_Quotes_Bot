@@ -18,7 +18,7 @@ import pandas as pd
 # In[ ]:
 
 
-with open("./api.key", "r") as f:
+with open("bots/Loot_Quotes_Bot/api.key", "r") as f:
     token = f.read().strip()
 
 
@@ -27,7 +27,7 @@ with open("./api.key", "r") as f:
 # In[ ]:
 
 
-conn = sqlite3.connect("./loot.db")
+conn = sqlite3.connect("bots/Loot_Quotes_Bot/loot.db")
 c = conn.cursor()
 
 
@@ -59,7 +59,7 @@ items.head()
 # In[ ]:
 
 
-items.to_csv("./data/items.csv")
+items.to_csv("bots/Loot_Quotes_Bot/data/items.csv")
 
 
 # ## Update transactions database
@@ -77,7 +77,7 @@ while(i <= 10): # Maximum offset is 10000
 
     transactions = pd.DataFrame(j["res"])
     transactions = transactions[transactions.type == 1]
-    
+
     for row in transactions.iterrows():
         c.execute('SELECT * FROM transactions WHERE id=?', (row[1][2],))
         if c.fetchone():
@@ -97,4 +97,3 @@ conn.commit()
 
 
 conn.close()
-
